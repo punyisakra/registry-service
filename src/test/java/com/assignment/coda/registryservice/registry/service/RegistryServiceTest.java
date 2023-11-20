@@ -4,6 +4,7 @@ import com.assignment.coda.registryservice.registry.dto.Instance;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -11,9 +12,16 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)
 class RegistryServiceTest {
+
+    @Mock
+    private RabbitService rabbitServiceMock;
 
     @InjectMocks
     private RegistryServiceImpl service;
@@ -25,6 +33,8 @@ class RegistryServiceTest {
         boolean isRegistered = service.register(instance);
 
         assertThat(isRegistered, is(true));
+        verify(rabbitServiceMock, times(1))
+                .sent(argThat(e -> e.getAction().equals("add") && e.getInstance().equals(instance)));
     }
 
     @Test
@@ -34,6 +44,7 @@ class RegistryServiceTest {
         boolean isRegistered = service.register(instance);
 
         assertThat(isRegistered, is(false));
+        verify(rabbitServiceMock, times(0)).sent(any());
     }
 
     @Test
@@ -43,6 +54,7 @@ class RegistryServiceTest {
         boolean isRegistered = service.register(instance);
 
         assertThat(isRegistered, is(false));
+        verify(rabbitServiceMock, times(0)).sent(any());
     }
 
     @Test
@@ -70,5 +82,27 @@ class RegistryServiceTest {
 
         assertThat(instanceList, notNullValue());
         assertThat(instanceList.size(), is(0));
+    }
+
+    @Test
+    void removeRegistry_removeSuccess_returnTrue() {
+        Instance instance = new Instance("name", "port");
+        service.register(instance);
+
+        boolean isRemoved = service.removeRegistry(instance);
+
+        assertThat(isRemoved, is(true));
+        verify(rabbitServiceMock, times(1))
+                .sent(argThat(e -> e.getAction().equals("remove") && e.getInstance().equals(instance)));
+    }
+
+    @Test
+    void removeRegistry_removeFailed_returnFalse() {
+        Instance instance = new Instance("name", "port");
+
+        boolean isRemoved = service.removeRegistry(instance);
+
+        assertThat(isRemoved, is(false));
+        verify(rabbitServiceMock, times(0)).sent(any());
     }
 }
