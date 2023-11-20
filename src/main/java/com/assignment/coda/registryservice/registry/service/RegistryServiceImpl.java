@@ -1,19 +1,19 @@
-package com.assignment.coda.registryservice.service;
+package com.assignment.coda.registryservice.registry.service;
 
-import com.assignment.coda.registryservice.model.Instance;
+import com.assignment.coda.registryservice.registry.model.Instance;
 import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
 public class RegistryServiceImpl implements RegistryService {
 
-    private final List<Instance> instanceList = Collections.synchronizedList(new ArrayList<>());
+    private final List<Instance> instanceList = Collections.synchronizedList(new LinkedList<>());
 
     private final Logger logger = LoggerFactory.getLogger(RegistryServiceImpl.class);
 
@@ -31,5 +31,11 @@ public class RegistryServiceImpl implements RegistryService {
     @Override
     public List<Instance> getRegistryList() {
         return instanceList;
+    }
+
+    @Override
+    public boolean removeRegistry(Instance instance) {
+        logger.info("Remove instance: {}", instance);
+        return instanceList.remove(instance);
     }
 }

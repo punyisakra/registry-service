@@ -27,7 +27,7 @@ public class RegistryApiTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payload))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Register success"));
+                .andExpect(content().string("success"));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class RegistryApiTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payload))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Register success"));
+                .andExpect(content().string("success"));
     }
 
     @Test

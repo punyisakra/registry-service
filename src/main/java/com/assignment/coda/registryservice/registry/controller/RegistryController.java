@@ -1,7 +1,7 @@
-package com.assignment.coda.registryservice.controller;
+package com.assignment.coda.registryservice.registry.controller;
 
-import com.assignment.coda.registryservice.model.Instance;
-import com.assignment.coda.registryservice.service.RegistryService;
+import com.assignment.coda.registryservice.registry.model.Instance;
+import com.assignment.coda.registryservice.registry.service.RegistryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +32,8 @@ public class RegistryController {
     public ResponseEntity<String> register(@Validated @RequestBody Instance instance) {
         logger.info("{} /registers, REQUEST PAYLOAD: {}", RequestMethod.POST, instance);
         ResponseEntity<String> response = registryService.register(instance)
-                ? ResponseEntity.ok("Register success")
-                : ResponseEntity.badRequest().body("Register fail");
+                ? ResponseEntity.ok("success")
+                : ResponseEntity.badRequest().body("failed");
         logger.info("RESPONSE: {}", response.getStatusCode());
         return response;
     }

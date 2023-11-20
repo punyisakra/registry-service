@@ -1,7 +1,7 @@
-package com.assignment.coda.registryservice.controller;
+package com.assignment.coda.registryservice.registry.controller;
 
-import com.assignment.coda.registryservice.model.Instance;
-import com.assignment.coda.registryservice.service.RegistryService;
+import com.assignment.coda.registryservice.registry.model.Instance;
+import com.assignment.coda.registryservice.registry.service.RegistryService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
