@@ -1,4 +1,4 @@
-package com.assignment.coda.registryservice.registry.model;
+package com.assignment.coda.registryservice.registry.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;

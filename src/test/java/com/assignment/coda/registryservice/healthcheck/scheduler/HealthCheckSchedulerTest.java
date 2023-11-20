@@ -1,7 +1,7 @@
 package com.assignment.coda.registryservice.healthcheck.scheduler;
 
 import com.assignment.coda.registryservice.healthcheck.service.HealthCheckService;
-import com.assignment.coda.registryservice.registry.model.Instance;
+import com.assignment.coda.registryservice.registry.dto.Instance;
 import com.assignment.coda.registryservice.registry.service.RegistryService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,6 +1,6 @@
 package com.assignment.coda.registryservice.registry.service;
 
-import com.assignment.coda.registryservice.registry.model.Instance;
+import com.assignment.coda.registryservice.registry.dto.Instance;
 
 import java.util.List;
 

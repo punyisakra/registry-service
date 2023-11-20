@@ -1,4 +1,4 @@
-package com.assignment.coda.registryservice.healthcheck.model;
+package com.assignment.coda.registryservice.healthcheck.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

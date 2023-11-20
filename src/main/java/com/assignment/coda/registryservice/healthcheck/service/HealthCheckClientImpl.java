@@ -1,7 +1,7 @@
 package com.assignment.coda.registryservice.healthcheck.service;
 
-import com.assignment.coda.registryservice.healthcheck.model.HealthStatus;
-import com.assignment.coda.registryservice.registry.model.Instance;
+import com.assignment.coda.registryservice.healthcheck.dto.HealthStatus;
+import com.assignment.coda.registryservice.registry.dto.Instance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.assignment.coda.registryservice.registry.service;
 
-import com.assignment.coda.registryservice.registry.model.Instance;
+import com.assignment.coda.registryservice.registry.dto.Instance;
 import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
