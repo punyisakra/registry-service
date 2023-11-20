@@ -12,6 +12,10 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * A service class providing an implementation to {@link RegistryService}
+ * to handle registry logic
+ */
 @Service
 public class RegistryServiceImpl implements RegistryService {
 
@@ -26,6 +30,12 @@ public class RegistryServiceImpl implements RegistryService {
         this.rabbitService = rabbitService;
     }
 
+    /**
+     * Register the input instance by adding the instance to the registry list.
+     * If success, publish the {@link RegistryEvent} to the RabbitMQ.
+     * @param instance an application instance of type {@link Instance} to be registered
+     * @return true if register process is success; else false
+     */
     @Override
     public boolean register(Instance instance) {
         if (Strings.isBlank(instance.getName())
@@ -38,11 +48,23 @@ public class RegistryServiceImpl implements RegistryService {
         return true;
     }
 
+    /**
+     * Get all the instances that have been registered with the registry.
+     * Will return empty {@link List} if no instance has registered.
+     * @return a list of type {@link List<Instance>} represented all {@link Instance}s which were
+     * registered with the registry
+     */
     @Override
     public List<Instance> getRegistryList() {
         return instanceList;
     }
 
+    /**
+     * Remove the input instance from the registry list.
+     * If success, publish the {@link RegistryEvent} to the RabbitMQ.
+     * @param instance an application instance of type {@link Instance} to be removed
+     * @return true if remove process is success; else false
+     */
     @Override
     public boolean removeRegistry(Instance instance) {
         boolean isRemoved = instanceList.remove(instance);

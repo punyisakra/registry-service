@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * Registry API Controller for handling registry HTTP request
+ * */
 @RestController
 public class RegistryController {
 
@@ -26,6 +29,13 @@ public class RegistryController {
         this.registryService = registryService;
     }
 
+    /**
+     * Register POST API: accept a running instance as request body and register it in the
+     * registry.  Will return {@link org.springframework.http.HttpStatus} 400: Bad Request if
+     * the register process is failed.
+     * @param instance an application instance of type {@link Instance} to be registered
+     * @return the {@link String} result of register process, wrapped with HttpStatus
+     */
     @RequestMapping(
             value = "/registries",
             method = RequestMethod.POST)
@@ -38,6 +48,12 @@ public class RegistryController {
         return response;
     }
 
+    /**
+     * Register GET API: get all the instance list that have been registered with the registry.
+     * Will return empty {@link List} if no instance has registered.
+     * @return a list of type {@link List<Instance>} represented all {@link Instance}s which were
+     * registered with the registry
+     */
     @RequestMapping(
             value = "/registries",
             method = RequestMethod.GET)

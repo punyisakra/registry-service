@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * A client class providing an implementation to {@link HealthCheckClient}
+ * to perform health check on registry list
+ */
 @Service
 public class HealthCheckClientImpl implements HealthCheckClient {
 
@@ -23,6 +27,12 @@ public class HealthCheckClientImpl implements HealthCheckClient {
         this.restTemplate = restTemplate;
     }
 
+    /**
+     * Perform health check to the input instance
+     * @param instance an instance of type {@link Instance} in registry list to be checked
+     * @return a status {@link HealthStatus} of the input instance
+     * @throws RestClientException when there is any error when sending GET HTTP request
+     */
     @Override
     public ResponseEntity<HealthStatus> healthCheck(Instance instance) throws RestClientException {
         String url = String.format("http://localhost:%s/actuator/health", instance.getPort());
