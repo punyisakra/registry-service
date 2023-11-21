@@ -5,6 +5,10 @@ import com.assignment.coda.registryservice.registry.dto.RegistryEvent;
 
 import java.util.List;
 
+/**
+ * A service interface implemented by {@link RegistryServiceImpl}
+ * to handle registry logic
+ */
 public interface RegistryService {
     /**
      * Register the input instance by adding the instance to the registry list.
